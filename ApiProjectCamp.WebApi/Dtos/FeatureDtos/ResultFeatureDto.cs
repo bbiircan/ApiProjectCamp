@@ -1,6 +1,6 @@
-﻿namespace ApiProjectCamp.WebApi.Entities
+﻿namespace ApiProjectCamp.WebApi.Dtos.FeatureDtos
 {
-    public class Feature
+    public class ResultFeatureDto
     {
         public int FeatureId { get; set; }
         public string Title { get; set; }

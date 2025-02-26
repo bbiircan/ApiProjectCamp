@@ -156,6 +156,9 @@ _NCrunch_*
 .*crunch*.local.xml
 nCrunchTemp_*
 
+# Ignore desktop.ini files
+desktop.ini
+
 # MightyMoose
 *.mm.*
 AutoTest.Net/
