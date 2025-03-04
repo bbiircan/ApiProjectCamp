@@ -30,6 +30,7 @@ namespace ApiProjectCamp.WebApi.Controllers
         {
             var value = _mapper.Map<Feature>(createFeatureDto);
             _context.Features.Add(value);
+            _context.SaveChanges();
             return Ok("The addition operation was successful.");
         }
 
@@ -38,6 +39,7 @@ namespace ApiProjectCamp.WebApi.Controllers
         {
             var value = _context.Features.Find(id);
             _context.Features.Remove(value);
+            _context.SaveChanges();
             return Ok("The feature has been successfully deleted.");
         }
 
@@ -46,6 +48,7 @@ namespace ApiProjectCamp.WebApi.Controllers
         {
             var value = _mapper.Map<Feature>(updateFeatureDto);
             _context.Features.Update(value);
+            _context.SaveChanges();
             return Ok("The feature has been successfully updated.");
         }
 
