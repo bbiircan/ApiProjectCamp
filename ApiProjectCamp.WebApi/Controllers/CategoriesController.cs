@@ -1,5 +1,7 @@
 ﻿using ApiProjectCamp.WebApi.Context;
+using ApiProjectCamp.WebApi.Dtos.CategoryDtos;
 using ApiProjectCamp.WebApi.Entities;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiProjectCamp.WebApi.Controllers
@@ -9,16 +11,19 @@ namespace ApiProjectCamp.WebApi.Controllers
     public class CategoriesController : ControllerBase
     {
         private readonly ApiContext _context;
+        private readonly IMapper _mapper;
 
-        public CategoriesController(ApiContext context)
+        public CategoriesController(ApiContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         [HttpPost]
-        public IActionResult CreateCategory(Category category)
+        public IActionResult CreateCategory(CreateCategoryDto createCategoryDto)
         {
-            _context.Categories.Add(category);  
+            var value = _mapper.Map<Category>(createCategoryDto);
+            _context.Categories.Add(value);
             _context.SaveChanges();
             return Ok("The addition operation was successful.");
         }
@@ -47,9 +52,10 @@ namespace ApiProjectCamp.WebApi.Controllers
         }
 
         [HttpPut]
-        public IActionResult UpdateCategory(Category category)
+        public IActionResult UpdateCategory(UpdateCategoryDto updateCategoryDto)
         {
-            _context.Categories.Update(category);
+            var value = _mapper.Map<Category>(updateCategoryDto);
+            _context.Categories.Update(value);
             _context.SaveChanges();
             return Ok("The category has been successfully updated.");
         }
